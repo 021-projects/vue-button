@@ -1,4 +1,6 @@
-# vue-button
+# Button for Vue 3
+
+![demo](demo/img.png)
 
 ## Project setup
 ```
