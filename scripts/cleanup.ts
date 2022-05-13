@@ -11,7 +11,7 @@ const files = [
 ]
 
 const rename = {
-
+  "dist:index.css": "dist:style.css"
 }
 
 const merge = {
@@ -21,7 +21,13 @@ const merge = {
   ]
 }
 
-const typesPath = file => path.resolve(__dirname, `../types/${file}`)
+const pathFormat = file => {
+  let [alias, fileName] = file.includes(':')
+    ? file.split(':')
+    : ['types', file]
+
+  return path.resolve(__dirname, `../${alias}/${fileName}`)
+}
 const errHandler = err => {
   if (err)
     throw err
@@ -47,25 +53,25 @@ async function unlink ( path: string ) {
 async function renameCleanUp () {
   for (const from of Object.keys(rename)) {
     const to = rename[from]
-    await mvFile(typesPath(from), typesPath(to))
+    await mvFile(pathFormat(from), pathFormat(to))
   }
 }
 
 async function mergeCleanUp () {
   for (const outputFile of Object.keys(merge)) {
     const inputFiles = merge[outputFile]
-    const outputPath = typesPath(outputFile)
+    const outputPath = pathFormat(outputFile)
 
     if (! fs.existsSync(outputPath))
       await createFile(outputPath)
 
-    await mergeFiles(inputFiles.map(typesPath), outputPath)
+    await mergeFiles(inputFiles.map(pathFormat), outputPath)
   }
 }
 
 async function unlinkCleanUp () {
   for (const file of files) {
-    await unlink(typesPath(file))
+    await unlink(pathFormat(file))
   }
 }
 

@@ -18,6 +18,9 @@
   "main": "dist/index.umd.min.js",
   "module": "dist/index.common.js",
   "types": "types/index.d.ts",
+  "files": [
+    "dist"
+  ],
   "exports": {
     ".": {
       "import": "./dist/index.common.js",
