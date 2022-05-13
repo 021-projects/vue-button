@@ -10,6 +10,7 @@ yarn install @021-projects/vue-button
 ### Usage
 ```vue
 import VueButton from '@021-projects/vue-button'
+import '@021-projects/vue-button/dist/style.css'
 
 ...
 components: { VueButton }
