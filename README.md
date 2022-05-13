@@ -2,23 +2,106 @@
 
 ## Project setup
 ```
-yarn install
+yarn install @021/vue-button
 ```
 
-### Compiles and hot-reloads for development
-```
-yarn serve
+### Usage
+```vue
+import VueButton from '@021/vue-button'
+
+...
+components: { VueButton }
+...
 ```
 
-### Compiles and minifies for production
-```
-yarn build
+```vue
+<vue-button label="Test" />
+<vue-button label="No caps" no-caps />
+<vue-button label="Test" class="custom-btn" />
+<vue-button label="Rounded" rounded />
+<vue-button label="Rounded ripple" rounded ripple />
+<vue-button label="Ripple flat" ripple flat />
+
+<vue-button label="Small" size="sm" />
+<vue-button label="Medium" size="md" />
+<vue-button label="Large" size="lg" />
+
+<vue-button label="Dark" color="black" text-color="white" />
+
+<vue-button color="black" text-color="white" @click="showAlert"><b>Click me</b></vue-button>
 ```
 
-### Lints and fixes files
-```
-yarn lint
-```
+### Properties
+```typescript
+/**
+ * Button title 
+ */
+label: {
+  type: String,
+  default: ''
+},
 
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+/**
+ * Button size. Allowed xs, sm, md, lg, xl
+ */
+size: {
+  type: String as PropType<TSize>,
+  default: 'md'
+},
+
+/**
+ * Button (background) color
+ */
+color: {
+  type: String,
+  default: '#27ae60'
+},
+
+/**
+ * Button text color
+ */
+textColor: {
+  type: String,
+  default: '#fff'
+},
+
+/**
+ * Rounded borders for button
+ */
+rounded: {
+  type: Boolean,
+  default: false
+},
+
+/**
+ * Ripple effect on click
+ */
+ripple: {
+  type: Boolean,
+  default: false
+},
+
+/**
+ * No shadow 
+ */
+flat: {
+  type: Boolean,
+  default: false
+},
+
+/**
+ * No upppercase text transform 
+ */
+noCaps: {
+  type: Boolean,
+  default: false
+},
+
+/**
+ * Disabled state
+ */
+disabled: {
+  type: Boolean,
+  default: false
+}
+```

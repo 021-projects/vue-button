@@ -1,4 +1,4 @@
-import { createApp } from 'vue'
-import App from './App.vue'
+import VueButton from '@/components/VueButton.vue'
+export default VueButton
 
-createApp(App).mount('#app')
+export * from '@/sizes'
