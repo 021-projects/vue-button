@@ -2,12 +2,12 @@
 
 ## Project setup
 ```
-yarn install @021/vue-button
+yarn install @021-projects/vue-button
 ```
 
 ### Usage
 ```vue
-import VueButton from '@021/vue-button'
+import VueButton from '@021-projects/vue-button'
 
 ...
 components: { VueButton }

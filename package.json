@@ -1,5 +1,5 @@
 {
-  "name": "@021/vue-button",
+  "name": "@021-projects/vue-button",
   "version": "0.1.0",
   "scripts": {
     "serve": "vue-cli-service serve src/dev.ts",
