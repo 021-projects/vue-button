@@ -4,7 +4,7 @@
 
 ## Project setup
 ```
-yarn install @021-projects/vue-button
+yarn add @021-projects/vue-button
 ```
 
 ### Usage
