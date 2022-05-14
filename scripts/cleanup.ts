@@ -3,11 +3,12 @@ import path from 'path'
 import mergeFiles from 'merge-files'
 
 const files = [
-  'main.d.ts',
-  'dev.d.ts',
-  'App.vue.d.ts',
-  'components',
-  'sizes.d.ts'
+  "main.d.ts",
+  "dev.d.ts",
+  "App.vue.d.ts",
+  "components",
+  "sizes.d.ts",
+  "utils"
 ]
 
 const rename = {

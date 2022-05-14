@@ -2,6 +2,9 @@
 import { computed, PropType } from 'vue'
 import { TSize, useSize } from '@/sizes'
 import { touchRipple as vTouchRipple } from '@vuemod/vue-touch-ripple'
+import { stopAndPrevent } from '@/utils/event'
+
+const emit = defineEmits(['click'])
 
 const props = defineProps({
   label: {
@@ -68,6 +71,15 @@ const style = computed(() => {
     color: props.textColor
   })
 })
+
+function emitClick ( e: Event ) {
+  if (e === void 0 || e.defaultPrevented)
+    return
+
+  stopAndPrevent(e)
+
+  !props.disabled && emit('click', e)
+}
 </script>
 
 <template>
@@ -76,6 +88,8 @@ const style = computed(() => {
     :style="style"
     v-touch-ripple="ripple"
     tabindex="0"
+    @click="emitClick"
+    :disabled="disabled"
   >
     <span class="focus-helper" tabindex="-1"></span>
     <slot v-if="!label" />
@@ -147,7 +161,7 @@ const style = computed(() => {
   &:after
     background: #fff
 
-.hoverable:hover
+.hoverable:hover:not(.disabled)
   > .focus-helper
     background: currentColor
     opacity: .15

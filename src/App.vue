@@ -1,11 +1,26 @@
 <script lang="ts" setup>
 import VueButton from '@/components/VueButton.vue'
 import { sizes as _sizes, TSize } from '@/sizes'
+import { randomInt } from '@/utils/math'
+import { ref } from 'vue'
 
 const sizes = Object.keys(_sizes) as TSize[]
 
 function showAlert () {
   alert('Nice to see that you clicked')
+}
+
+let dSize = ref<TSize>('md')
+let dSizeInterval: number | undefined
+function toggleDSize () {
+  if (dSizeInterval) {
+    clearInterval(dSizeInterval)
+    return
+  }
+
+  setInterval(() => {
+    dSize.value = sizes[randomInt(0, sizes.length-1)]
+  }, 1500)
 }
 </script>
 
@@ -27,6 +42,9 @@ function showAlert () {
     />
 
     <vue-button label="Dark" color="black" text-color="white" />
+    <vue-button label="Disabled" disabled @click="showAlert" />
+
+    <vue-button label="Dynamic size" :size="dSize" @click="toggleDSize" />
 
     <vue-button color="black" text-color="white" @click="showAlert"><b>Click me</b></vue-button>
   </div>
