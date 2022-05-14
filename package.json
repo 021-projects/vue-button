@@ -3,10 +3,8 @@
   "version": "0.1.5",
   "scripts": {
     "serve": "vue-cli-service serve src/dev.ts",
-    "build": "vue-cli-service build",
+    "build": "npx ts-node build/build.ts",
     "lint": "vue-cli-service lint",
-    "lib": "vue-cli-service build --target=lib --name index src/main.ts && rm dist/demo.html",
-    "ts-lib": "yarn lib && vue-tsc --emitDeclarationOnly --declaration && npx ts-node scripts/cleanup.ts",
     "pkg:user": "npm adduser",
     "pkg:publish": "npm publish --access public"
   },
@@ -17,10 +15,9 @@
   "description": "Button component for Vue 3",
   "main": "dist/index.umd.min.js",
   "module": "dist/index.common.js",
-  "types": "types/index.d.ts",
+  "types": "dist/types/index.d.ts",
   "files": [
-    "dist",
-    "types"
+    "dist"
   ],
   "exports": {
     ".": {
@@ -42,6 +39,7 @@
     "vue": "^3.0.0"
   },
   "devDependencies": {
+    "@types/shelljs": "^0.8.11",
     "@typescript-eslint/eslint-plugin": "^5.23.0",
     "@typescript-eslint/parser": "^5.23.0",
     "@vue/cli-plugin-babel": "~5.0.4",
@@ -51,9 +49,11 @@
     "@vue/eslint-config-typescript": "^10.0.0",
     "@vuemod/vue-touch-ripple": "^1.1.2",
     "core-js": "^3.6.5",
+    "epic-spinners": "^1.1.0",
     "merge-files": "^0.1.2",
     "sass": "^1.26.5",
     "sass-loader": "^12.6.0",
+    "shelljs": "^0.8.5",
     "typescript": "~4.6.4"
   }
 }

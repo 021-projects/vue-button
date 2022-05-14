@@ -1,0 +1,16 @@
+{
+    "extends": "../tsconfig.json",
+    "compilerOptions": {
+        "outDir": "../dist/types",
+        "module": "commonjs",
+        "target": "es5",
+        "esModuleInterop": true,
+        "resolveJsonModule": true
+    },
+    "include": [
+        "../src/main.ts"
+    ],
+    "exclude": [
+        "../src/dev.ts"
+    ]
+}

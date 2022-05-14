@@ -14,18 +14,12 @@
     "types": [
       "webpack-env"
     ],
-    "paths": {
-      "@/*": [
-        "src/*"
-      ]
-    },
     "lib": [
       "esnext",
       "dom",
       "dom.iterable",
       "scripthost"
-    ],
-    "outDir": "types"
+    ]
   },
   "include": [
     "src/**/*.ts",

@@ -1,6 +1,6 @@
-import VueButton from '@/components/VueButton.vue'
+import VueButton from './components/VueButton.vue'
 export default VueButton
-export { default as LoopingRhombusesSpinner } from '@/components/LoopingRhombusesSpinner.vue'
+export { default as LoopingRhombusesSpinner } from './components/LoopingRhombusesSpinner.vue'
 
 export {
   sizes,
@@ -8,4 +8,4 @@ export {
   loadingSpinnerSize,
   fontSizes,
   TSize
-} from '@/sizes'
+} from './sizes'

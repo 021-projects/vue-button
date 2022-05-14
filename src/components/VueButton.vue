@@ -1,9 +1,9 @@
 <script lang="ts" setup>
 import { computed, PropType } from 'vue'
-import { loadingSpinnerSize, TSize, useSize } from '@/sizes'
+import { loadingSpinnerSize, TSize, useSize } from '../sizes'
 import { touchRipple as vTouchRipple } from '@vuemod/vue-touch-ripple'
-import { stopAndPrevent } from '@/utils/event'
-import LoopingRhombusesSpinner from '@/components/LoopingRhombusesSpinner.vue'
+import { stopAndPrevent } from '../utils/event'
+import LoopingRhombusesSpinner from './LoopingRhombusesSpinner.vue'
 
 const emit = defineEmits(['click'])
 

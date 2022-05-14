@@ -1,7 +1,7 @@
 <script lang="ts" setup>
-import VueButton from '@/components/VueButton.vue'
-import { sizes as _sizes, TSize } from '@/sizes'
-import { randomInt } from '@/utils/math'
+import VueButton from './components/VueButton.vue'
+import { sizes as _sizes, TSize } from './sizes'
+import { randomInt } from './utils/math'
 import { ref } from 'vue'
 import { SpringSpinner } from 'epic-spinners'
 
