@@ -1,8 +1,9 @@
 <script lang="ts" setup>
 import { computed, PropType } from 'vue'
-import { TSize, useSize } from '@/sizes'
+import { loadingSpinnerSize, TSize, useSize } from '@/sizes'
 import { touchRipple as vTouchRipple } from '@vuemod/vue-touch-ripple'
 import { stopAndPrevent } from '@/utils/event'
+import LoopingRhombusesSpinner from '@/components/LoopingRhombusesSpinner.vue'
 
 const emit = defineEmits(['click'])
 
@@ -42,6 +43,14 @@ const props = defineProps({
   disabled: {
     type: Boolean,
     default: false
+  },
+  loading: {
+    type: Boolean,
+    default: false
+  },
+  loadingAnimationDuration: {
+    type: Number,
+    default: 2500
   }
 })
 
@@ -72,13 +81,24 @@ const style = computed(() => {
   })
 })
 
+const loadingSpinnerStyle = computed(() => {
+  const sizeStyle = loadingSpinnerSize(props.size)
+
+  return Object.assign({}, sizeStyle.value, {
+    color: props.textColor,
+    animationDuration: props.loadingAnimationDuration
+  })
+})
+
+const active = computed(() => !props.disabled && !props.loading)
+
 function emitClick ( e: Event ) {
   if (e === void 0 || e.defaultPrevented)
     return
 
   stopAndPrevent(e)
 
-  !props.disabled && emit('click', e)
+  active.value && emit('click', e)
 }
 </script>
 
@@ -92,8 +112,16 @@ function emitClick ( e: Event ) {
     :disabled="disabled"
   >
     <span class="focus-helper" tabindex="-1"></span>
-    <slot v-if="!label" />
-    <template v-else>{{ label }}</template>
+    <span :class="['label', loading ? 'label--hidden' : '']">
+      <slot v-if="!label" />
+      <template v-else>{{ label }}</template>
+    </span>
+    <transition name="fade">
+      <span v-if="loading" class="loading">
+        <slot v-if="$slots.loading" name="loading" :spinner-style="loadingSpinnerStyle"></slot>
+        <looping-rhombuses-spinner v-bind="loadingSpinnerStyle" v-else />
+      </span>
+    </transition>
   </button>
 </template>
 
@@ -134,6 +162,28 @@ function emitClick ( e: Event ) {
   &--flat
     box-shadow: none
 
+.label
+  text-overflow: ellipsis
+  white-space: nowrap
+  overflow: hidden
+  max-width: 100%
+  transition: opacity .3s
+  z-index: 0
+
+  &--hidden
+    opacity: 0
+    pointer-events: none
+
+.loading
+  position: absolute
+  top: 0
+  right: 0
+  bottom: 0
+  left: 0
+  display: flex
+  justify-content: center
+  align-items: center
+
 .focus-helper
   position: absolute
   top: 0
@@ -169,4 +219,12 @@ function emitClick ( e: Event ) {
       opacity: .1
     &:after
       opacity: .4
+
+.fade-enter-active,
+.fade-leave-active
+  transition: opacity .3s ease-out
+
+.fade-enter-from,
+.fade-leave-to
+  opacity: 0
 </style>

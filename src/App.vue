@@ -3,6 +3,7 @@ import VueButton from '@/components/VueButton.vue'
 import { sizes as _sizes, TSize } from '@/sizes'
 import { randomInt } from '@/utils/math'
 import { ref } from 'vue'
+import { SpringSpinner } from 'epic-spinners'
 
 const sizes = Object.keys(_sizes) as TSize[]
 
@@ -22,6 +23,8 @@ function toggleDSize () {
     dSize.value = sizes[randomInt(0, sizes.length-1)]
   }, 1500)
 }
+
+const loading = ref(false)
 </script>
 
 <template>
@@ -47,6 +50,14 @@ function toggleDSize () {
     <vue-button label="Dynamic size" :size="dSize" @click="toggleDSize" />
 
     <vue-button color="black" text-color="white" @click="showAlert"><b>Click me</b></vue-button>
+
+    <vue-button :loading="loading" label="LOad" @click="loading = !loading" />
+    <vue-button loading label="Custom loading" @click="showAlert">
+      <template #loading="{ spinnerStyle }">
+        <spring-spinner v-bind="spinnerStyle" />
+        <span style="padding-left: 10px">Loading</span>
+      </template>
+    </vue-button>
   </div>
 </template>
 
@@ -57,4 +68,5 @@ function toggleDSize () {
   align-items: center
   align-content: flex-start
   justify-content: center
+  flex-wrap: wrap
 </style>

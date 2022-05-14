@@ -28,4 +28,12 @@ export function useSize ( size: TSize ): ComputedRef<{
   }))
 }
 
+export function loadingSpinnerSize ( size: TSize ): ComputedRef<{
+  size: number;
+}> {
+  return computed(() => ({
+    size: fontSizes[size]
+  }))
+}
+
 export { sizes, fontSizes }
