@@ -8,6 +8,10 @@ import LoopingRhombusesSpinner from './LoopingRhombusesSpinner.vue'
 const emit = defineEmits(['click'])
 
 const props = defineProps({
+  align: {
+    type: String as PropType<'left' | 'center' | 'right'>,
+    default: 'center'
+  },
   label: {
     type: String,
     default: ''
@@ -55,7 +59,11 @@ const props = defineProps({
 })
 
 const classes = computed(() => {
-  let classes = ['btn', 'hoverable', 'test']
+  let classes = [
+    'btn',
+    'hoverable',
+    `text-${props.align}`
+  ]
 
   if (props.rounded)
     classes.push('btn--rounded')
@@ -128,7 +136,6 @@ function emitClick ( e: Event ) {
 <style lang="sass" scoped>
 .btn
   text-decoration: none
-  text-align: center
   letter-spacing: .5px
   flex-direction: column
   align-items: stretch
@@ -161,6 +168,15 @@ function emitClick ( e: Event ) {
 
   &--flat
     box-shadow: none
+
+.text-left
+  text-align: left
+
+.text-center
+  text-align: center
+
+.text-right
+  text-align: right
 
 .label
   text-overflow: ellipsis

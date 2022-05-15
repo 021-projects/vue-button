@@ -58,6 +58,10 @@ const loading = ref(false)
         <span style="padding-left: 10px">Loading</span>
       </template>
     </vue-button>
+
+    <vue-button label="Left" align="left" style="width: 150px" rounded />
+    <vue-button label="Center" align="center" style="width: 150px" rounded />
+    <vue-button label="Right" align="right" style="width: 150px" rounded />
   </div>
 </template>
 
