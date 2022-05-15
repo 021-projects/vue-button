@@ -32,10 +32,31 @@ components: { VueButton }
 <vue-button label="Dark" color="black" text-color="white" />
 
 <vue-button color="black" text-color="white" @click="showAlert"><b>Click me</b></vue-button>
+
+<!-- loading is var from component data -->
+<vue-button :loading="loading" label="LOad" @click="loading = !loading" />
+<vue-button loading label="Custom loading" @click="showAlert">
+  <template #loading="{ spinnerStyle }">
+    <spring-spinner v-bind="spinnerStyle" />
+    <span style="padding-left: 10px">Loading</span>
+  </template>
+</vue-button>
+
+<vue-button label="Left" align="left" style="width: 150px" rounded />
+<vue-button label="Center" align="center" style="width: 150px" rounded />
+<vue-button label="Right" align="right" style="width: 150px" rounded />
 ```
 
 ### Properties
 ```typescript
+/**
+ * Text alignment for label
+ */
+align: {
+  type: String as PropType<'left' | 'center' | 'right'>,
+  default: 'center'
+},
+
 /**
  * Button title 
  */
@@ -102,9 +123,32 @@ noCaps: {
 
 /**
  * Disabled state
+ * If true, button will ignore click event
+ * And will look like disabled
  */
 disabled: {
   type: Boolean,
   default: false
+}
+
+/**
+ * Loading state
+ * If true, button will ignore click event
+ * And will show loading spinner instead of label
+ * 
+ * Spinner can be replaced in "loading" slot
+ */
+loading: {
+  type: Boolean,
+  default: false
+},
+
+/**
+ * Duration of loading spinner animation
+ * Works only if spinner was not replaced in "loading" slot
+ */
+loadingAnimationDuration: {
+  type: Number,
+  default: 2500
 }
 ```
