@@ -47,7 +47,7 @@
     "@vue/cli-service": "~5.0.4",
     "@vue/compiler-sfc": "^3.0.0",
     "@vue/eslint-config-typescript": "^10.0.0",
-    "@vuemod/vue-touch-ripple": "^1.1.2",
+    "@vuemod/vue-touch-ripple": "https://gitpkg.now.sh/021-projects/vue-touch-ripple/dist?master",
     "core-js": "^3.6.5",
     "epic-spinners": "^1.1.0",
     "merge-files": "^0.1.2",

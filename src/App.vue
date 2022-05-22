@@ -25,6 +25,8 @@ function toggleDSize () {
 }
 
 const loading = ref(false)
+
+const showExpBtn = ref(true)
 </script>
 
 <template>
@@ -35,6 +37,7 @@ const loading = ref(false)
     <vue-button label="Rounded" rounded />
     <vue-button label="Rounded ripple" rounded ripple />
     <vue-button label="Ripple flat" ripple flat />
+    <vue-button v-if="showExpBtn" label="Hide exp" ripple flat @click="showExpBtn = false" />
 
     <vue-button
       v-for="size in sizes"
