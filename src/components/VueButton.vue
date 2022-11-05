@@ -60,22 +60,22 @@ const props = defineProps({
 
 const classes = computed(() => {
   let classes = [
-    'btn',
-    'hoverable',
-    `text-${props.align}`
+    'v-btn__btn',
+    'v-btn__hoverable',
+    `v-btn__text-${props.align}`
   ]
 
   if (props.rounded)
-    classes.push('btn--rounded')
+    classes.push('v-btn__btn--rounded')
 
   if (props.disabled)
-    classes.push('disabled')
+    classes.push('v-btn__disabled')
 
   if (props.flat)
-    classes.push('btn--flat')
+    classes.push('v-btn__btn--flat')
 
   if (props.noCaps)
-    classes.push('btn--no-uppercase')
+    classes.push('v-btn__btn--no-uppercase')
 
   return classes.join(' ')
 })
@@ -119,13 +119,13 @@ function emitClick ( e: Event ) {
     @click="emitClick"
     :disabled="disabled"
   >
-    <span class="focus-helper" tabindex="-1"></span>
-    <span :class="['label', loading ? 'label--hidden' : '']">
+    <span class="v-btn__focus-helper" tabindex="-1"></span>
+    <span :class="['v-btn__label', loading ? 'v-btn__label--hidden' : '']">
       <slot v-if="!label" />
       <template v-else>{{ label }}</template>
     </span>
-    <transition name="fade">
-      <span v-if="loading" class="loading">
+    <transition name="v-btn__fade">
+      <span v-if="loading" class="v-btn__loading">
         <slot v-if="$slots.loading" name="loading" :spinner-style="loadingSpinnerStyle"></slot>
         <looping-rhombuses-spinner v-bind="loadingSpinnerStyle" v-else />
       </span>
@@ -134,7 +134,7 @@ function emitClick ( e: Event ) {
 </template>
 
 <style lang="sass" scoped>
-.btn
+.v-btn__btn
   text-decoration: none
   letter-spacing: .5px
   flex-direction: column
@@ -157,7 +157,7 @@ function emitClick ( e: Event ) {
   box-shadow: rgba(50, 50, 93, 0.25) 0 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px
   font-family: Roboto, -apple-system, Helvetica Neue, Helvetica, Arial, sans-serif
 
-  &.disabled
+  &.v-btn__disabled
     opacity: .7 !important
 
   &--rounded
@@ -169,16 +169,16 @@ function emitClick ( e: Event ) {
   &--flat
     box-shadow: none
 
-.text-left
+.v-btn__text-left
   text-align: left
 
-.text-center
+.v-btn__text-center
   text-align: center
 
-.text-right
+.v-btn__text-right
   text-align: right
 
-.label
+.v-btn__label
   text-overflow: ellipsis
   white-space: nowrap
   overflow: hidden
@@ -190,7 +190,7 @@ function emitClick ( e: Event ) {
     opacity: 0
     pointer-events: none
 
-.loading
+.v-btn__loading
   position: absolute
   top: 0
   right: 0
@@ -200,7 +200,7 @@ function emitClick ( e: Event ) {
   justify-content: center
   align-items: center
 
-.focus-helper
+.v-btn__focus-helper
   position: absolute
   top: 0
   left: 0 #{"/* rtl:ignore */"}
@@ -227,8 +227,8 @@ function emitClick ( e: Event ) {
   &:after
     background: #fff
 
-.hoverable:hover:not(.disabled)
-  > .focus-helper
+.v-btn__hoverable:hover:not(.disabled)
+  > .v-btn__focus-helper
     background: currentColor
     opacity: .15
     &:before
@@ -236,11 +236,11 @@ function emitClick ( e: Event ) {
     &:after
       opacity: .4
 
-.fade-enter-active,
-.fade-leave-active
+.v-btn__fade-enter-active,
+.v-btn__fade-leave-active
   transition: opacity .3s ease-out
 
-.fade-enter-from,
-.fade-leave-to
+.v-btn__fade-enter-from,
+.v-btn__fade-leave-to
   opacity: 0
 </style>

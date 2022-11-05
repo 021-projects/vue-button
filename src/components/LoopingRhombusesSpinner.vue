@@ -48,9 +48,9 @@ const rhombusesStyles = computed(() => {
 </script>
 
 <template>
-  <div class="looping-rhombuses-spinner" :style="spinnerStyle">
+  <div class="v-btn__looping-rhombuses-spinner" :style="spinnerStyle">
     <div
-      class="rhombus"
+      class="v-btn__rhombus"
       v-for="(rs, index) in rhombusesStyles"
       :key="index"
       :style="rs"
@@ -59,15 +59,15 @@ const rhombusesStyles = computed(() => {
 </template>
 
 <style lang="sass" scoped>
-.looping-rhombuses-spinner, .looping-rhombuses-spinner *
+.v-btn__looping-rhombuses-spinner, .v-btn__looping-rhombuses-spinner *
   box-sizing: border-box
 
-.looping-rhombuses-spinner
+.v-btn__looping-rhombuses-spinner
   width: calc(15px * 4)
   height: 15px
   position: relative
 
-  .rhombus
+  .v-btn__rhombus
     height: 15px
     width: 15px
     background-color: #ff1d5e
@@ -76,7 +76,7 @@ const rhombusesStyles = computed(() => {
     margin: 0 auto
     border-radius: 2px
     transform: translateY(0) rotate(45deg) scale(0)
-    animation: looping-rhombuses-spinner-animation 2500ms linear infinite
+    animation: v-btn__looping-rhombuses-spinner-animation 2500ms linear infinite
 
     &:nth-child(1)
       animation-delay: calc(2500ms * 1 / -1.5)
@@ -87,7 +87,7 @@ const rhombusesStyles = computed(() => {
     &:nth-child(3)
       animation-delay: calc(2500ms * 3 / -1.5)
 
-@keyframes looping-rhombuses-spinner-animation
+@keyframes v-btn__looping-rhombuses-spinner-animation
   0%
     transform: translateX(0) rotate(45deg) scale(0)
   50%
